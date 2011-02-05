@@ -1,11 +1,12 @@
-=== Neode - neo4j rest adapter for node.js
+# Neode
+## neo4j rest adapter for node.js
 Little node.js tryout. Provides easy access to many
 resources of neo4j's rest api.
 
 Don't use it yet. As a matter of fact, don't even look at
 it yet! :)
 
-=== Tests
+## Tests
 Should look something like this. Requires a prefilled
 neo4j atm, so running the tests only make sense if you
 do it on my laptop. Ha.
