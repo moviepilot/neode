@@ -98,10 +98,10 @@ Neode.prototype.setNodeProperties
     
   // Make the kill!
   rest.put(path, options)
-      .addListener('success', function(data) {
+      .on('success', function(data) {
         callback(true);
       })
-      .addListener('error', function(data, response) {
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       }); 
 };
@@ -115,10 +115,10 @@ Neode.prototype.createNode
   var options= self.util.requestOptions({data: data});
   
   rest.post(self.base + '/db/data/node', options)
-      .addListener('success', function(data) {
+      .on('success', function(data) {
         callback(data);
       })
-      .addListener('error', function(data, response) {
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       });
 };
@@ -133,8 +133,8 @@ Neode.prototype.setRelationshipProperties
       options = self.util.requestOptions({data: data});
 
   rest.put(path, options)
-      .addListener('success', callback)
-      .addListener('error', function(data, response) {
+      .on('success', callback)
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       });
 };
@@ -157,10 +157,10 @@ Neode.prototype.createRelationship
 
   var options = self.util.requestOptions({data: edge});
   rest.post(path, options)
-      .addListener('success', function(data, response) {
+      .on('success', function(data, response) {
         callback(data);
       })
-      .addListener('error', function(data, response) {
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       });
 };
@@ -180,10 +180,10 @@ Neode.prototype.getRelationship
                + relationship;
   } 
   rest.get(path, self.util.requestOptions())
-      .addListener('success', function(data, response) {
+      .on('success', function(data, response) {
         callback(data);
       })
-      .addListener('error', function(data, response) {
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       });
 };
@@ -211,10 +211,10 @@ Neode.prototype.findNode
       options = self.util.requestOptions();
 
   rest.get(self.base + path, options)
-      .addListener('success', function(data) {
+      .on('success', function(data) {
         self.util.findNodeHandleSuccess(data, callback);
       })
-      .addListener('error', function(data, response) {
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       });
 };
@@ -249,13 +249,13 @@ Neode.prototype.findRelationships
       options = self.util.requestOptions();
 
   rest.get(self.base + path, options)
-      .addListener('success', function(data){
+      .on('success', function(data){
         var rels = _.select(data, function(i) {
           return i.end == query.to.self;
         });
         callback(rels);       
       })
-      .addListener('error', function(data, response) {
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       });
 };
@@ -272,10 +272,10 @@ Neode.prototype.removeFromNodeIndex
       path = self.util.nodeIndexDeletionPath(index, node, key);
 
   rest.del(self.base + path, self.util.requestOptions())
-      .addListener('success', function() {
+      .on('success', function() {
         callback(true);
       })
-      .addListener('error', function(data, response) {
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       });
 
@@ -287,10 +287,10 @@ Neode.prototype.addToNodeIndex
       path = self.util.nodeIndexAddPath(index, node, key);
 
   rest.post(self.base + path, this.util.requestOptions({data: node.self}))
-      .addListener('success', function(data) {
+      .on('success', function(data) {
         callback(true); 
       })
-      .addListener('error', function(data, response) {
+      .on('error', function(data, response) {
         self.util.handleRequestError(data, response, callback);
       });
 }
