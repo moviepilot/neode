@@ -281,6 +281,8 @@ Neode.prototype.removeFromNodeIndex
 
 };
 
+/* Adds an entry to an index
+ */
 Neode.prototype.addToNodeIndex
 = function(index, node, key, callback) {
   var self = this,
